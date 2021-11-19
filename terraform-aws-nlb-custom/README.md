@@ -47,9 +47,30 @@ Pre-requisites:
 ## Usage example to create NLB instance in us-west-1 region:
 ```
 {
-  "firstName": "John",
-  "lastName": "Smith",
-  "age": 25
+ module "nlb" {
+  source  = "./terraform-modules/terraform-aws-nlb-custom"
+  version = "1.0"
+  
+  # mandatory inputs
+  
+  name = var.nlb_name
+  scheme = var.nlb_scheme
+  listeners = var.nlb_listeners # should include at least one LoadBalancerProtocol (TCP | UPD) and  at least one LoadBalancerPort (port number, integer e.g. 443, 80 
+  vpc_id = var.nlb_vpcid
+  subnet_ids = var.nlb_subnet_ids
+  target_group = var.nlb_target_group #  TargetGroup with Name, Protocol/Port and type (Instance or <tba>)
+  healt_chek_protocol = var.nlb_healthcheck_protocol
+  
+  # optional advanced healthcheck parameters
+  health_check_port = var.nlb_healthcheck_port 
+  health_check_healty_threshold = var.nlb_health_check_healty_threshold
+  health_check_unhealty_threshold = var.nlb_health_check_unhealty_threshold
+  health_check_timeout = var.nlb_health_check_timeout
+  health_check_interval = var.nlb_health_check_interval 
+  
+  # mandatory inputs (cont.)
+  registered_targets = var.nlb_registered_targets
+  tags = var.nlb_tags
 }
 ```
 
