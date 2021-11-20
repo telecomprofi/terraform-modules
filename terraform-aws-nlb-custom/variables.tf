@@ -13,6 +13,7 @@
 variable "nlb_name" {
   description = "The name of Network Load Balancer being created"
   type = string
+  default     = "example-nlb"
 }
 
 variable "nlb_scheme" {
@@ -41,8 +42,8 @@ variable "nlb_vpcid" {
 }
   
 variable "nlb_subnet_ids" {
-  description = "The id(s) of subnets that will be used in Network Load Balancer's target groups"
-  type = string
+  description = "The list of id(s) of subnets that will be used in Network Load Balancer's target groups"
+  type        = list(string)
 }
   
 variable "nlb_target_group" {
@@ -83,8 +84,13 @@ variable "nlb_target_group" {
 #    }
 #  ]
 #  }
-
-    
+#
+#   type        = list(string)
+#   default     = ["us-west-2a", "us-west-2b", "us-west-2c"]
+#
+# References to extenal module's variables and lists from other module:
+# vpc_security_group_ids = [module.vpc.default_security_group_id]
+# subnet_id              = module.vpc.public_subnets[0]
 
   
   # mandatory inputs
