@@ -54,7 +54,7 @@ Pre-requisites:
   # mandatory inputs
   
   name = var.nlb_name
-  scheme = var.nlb_scheme
+  internal = var.nlb_internal # true = internal nlb, false = internet-facing nlb
   listeners = var.nlb_listeners # should include at least one LoadBalancerProtocol (TCP | UPD) and  at least one LoadBalancerPort (port number, integer e.g. 443, 80 
   vpc_id = var.nlb_vpcid
   subnet_ids = var.nlb_subnet_ids
